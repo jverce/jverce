@@ -1,5 +1,3 @@
-# `man jverce`
-
 ```man
 man(7)                          jverce man page                         man(7)
 
