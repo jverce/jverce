@@ -4,6 +4,7 @@ on:
     - main
     paths:
     - '*.troff'
+    - '.github/workflows/build.yml'
 
 jobs:
   build:
@@ -19,5 +20,5 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y groff
     - name: Update README
-      run: groff -man -Thtml man.troff >> README.md
+      run: groff -man -Thtml man.troff > README.md
     - uses: stefanzweifel/git-auto-commit-action@v5
