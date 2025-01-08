@@ -1,0 +1,21 @@
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Instal groff
+      run: |
+        apt-get update
+        apt-get install -y groff
+    - name: Update README
+      run: groff -man -Thtml man.troff >> README.md
+    - uses: stefanzweifel/git-auto-commit-action@v5
