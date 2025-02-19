@@ -15,10 +15,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Instal groff
+    - name: Install groff
       run: |
         sudo apt-get update
         sudo apt-get install -y groff
     - name: Update README
-      run: groff -man -Thtml man.troff > README.md
+      run: |
+        echo '```text'
+        groff -man -Tascii man.troff | sed -E 's/\x1B\[[0-9;]*m//g' >> README.md
+        echo '```' >> README.md
     - uses: stefanzweifel/git-auto-commit-action@v5
